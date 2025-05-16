@@ -1,0 +1,15 @@
+[2025-05-16 19:43:04] [ERROR] Database connection error {"message":"Access denied for user 'root'@'localhost' (using password: NO)"}
+[2025-05-16 19:43:56] [ERROR] Database connection error {"message":"Access denied for user 'root'@'localhost' (using password: NO)"}
+[2025-05-16 19:44:48] [INFO] Database connection established 
+[2025-05-16 19:44:56] [INFO] Database connection established 
+[2025-05-16 19:44:58] [INFO] Database connection established 
+[2025-05-16 19:45:07] [INFO] Database connection established 
+[2025-05-16 19:45:32] [INFO] Database connection established 
+[2025-05-16 19:45:34] [INFO] Database connection established 
+[2025-05-16 19:45:40] [INFO] Database connection established 
+[2025-05-16 19:45:54] [INFO] Database connection established 
+[2025-05-16 19:45:55] [INFO] Database connection established 
+[2025-05-16 19:46:08] [INFO] Database connection established 
+[2025-05-16 19:46:13] [INFO] Database connection established 
+[2025-05-16 19:46:19] [INFO] Database connection established 
+[2025-05-16 19:46:20] [INFO] Database connection established 

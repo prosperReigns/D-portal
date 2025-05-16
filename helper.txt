@@ -1,0 +1,16 @@
+curl -X POST http://127.0.0.1/D-portal/api/login.php -H "Content-Type: application/json" -d "{\"username\":\"admin\",\"password\":\"your_password\"}"
+
+curl -X POST http://127.0.0.1/D-portal/api/register.php -H "Content-Type: application/json" -d "{\"name\":\"John Doe\",\"class\":\"JSS1\",\"subject\":\"Mathematics\",\"test_title\":\"Math Test 1\"}"
+
+curl -X POST http://127.0.0.1/D-portal/api/add_question.php -H "Content-Type: application/json" -d "{\"test_title\":\"Math Test 1\",\"selected_class\":\"JSS1\",\"selected_subject\":\"Mathematics\",\"question\":\"What is 2+2?\",\"option1\":\"3\",\"option2\":\"4\",\"option3\":\"5\",\"option4\":\"6\",\"correct_answer\":\"2\"}"
+
+curl -X GET http://127.0.0.1/D-portal/api/get_question.php
+
+curl -X PUT http://127.0.0.1/D-portal/api/update_question.php -H "Content-Type: application/json" -d "{\"question_id\":1,\"question_text\":\"Updated question\",\"option1\":\"New option 1\",\"option2\":\"New option 2\",\"option3\":\"New option 3\",\"option4\":\"New option 4\",\"correct_answer\":\"1\"}"
+
+curl -X GET http://127.0.0.1/D-portal/api/view_result.php
+
+curl -X POST http://127.0.0.1/D-portal/api/take_exam.php
+
+curl -X POST http://127.0.0.1/D-portal/api/submit_exam.php -H "Content-Type: application/json" -d "{\"answers\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"4\"}}"
+

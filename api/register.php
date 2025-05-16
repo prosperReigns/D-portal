@@ -1,65 +1,114 @@
 <?php
 header('Content-Type: application/json');
 require_once '../db.php';
+require_once '../middleware/cors.php';
+require_once '../middleware/rate_limit.php';
+require_once '../utils/Logger.php';
+require_once '../utils/ErrorHandler.php';
+require_once '../utils/ApiResponse.php';
 require_once '../vendor/autoload.php';
 use Firebase\JWT\JWT;
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
-    exit();
-}
+try {
+    // Initialize rate limiter
+    $rateLimiter = new RateLimit(Database::getInstance()->getConnection());
+    $clientIP = $_SERVER['REMOTE_ADDR'];
+    $endpoint = 'register';
 
-$conn = Database::getInstance()->getConnection();
-$data = json_decode(file_get_contents('php://input'), true);
+    // Check rate limit
+    if (!$rateLimiter->checkLimit($clientIP, $endpoint)) {
+        Logger::info('Rate limit exceeded', ['ip' => $clientIP, 'endpoint' => $endpoint]);
+        echo ApiResponse::error('Rate limit exceeded. Please try again later.', 429);
+        exit();
+    }
 
-if (!isset($data['name'], $data['class'], $data['subject'], $data['test_title'])) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Missing required fields']);
-    exit();
-}
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        throw new Exception('Method not allowed');
+    }
 
-$name = mysqli_real_escape_string($conn, $data['name']);
-$class = mysqli_real_escape_string($conn, $data['class']);
-$subject = mysqli_real_escape_string($conn, $data['subject']);
-$test_title = mysqli_real_escape_string($conn, $data['test_title']);
+    $conn = Database::getInstance()->getConnection();
+    $data = json_decode(file_get_contents('php://input'), true);
 
-$sql = "INSERT INTO students (name, class) VALUES ('$name', '$class')";
-if (mysqli_query($conn, $sql)) {
-    $student_id = mysqli_insert_id($conn);
+    // Validate required fields
+    if (!isset($data['name'], $data['class'], $data['subject'], $data['test_title'])) {
+        throw new Exception('Missing required fields');
+    }
+
+    // Sanitize inputs
+    $name = mysqli_real_escape_string($conn, $data['name']);
+    $class = mysqli_real_escape_string($conn, $data['class']);
+    $subject = mysqli_real_escape_string($conn, $data['subject']);
+    $test_title = mysqli_real_escape_string($conn, $data['test_title']);
+
+    // Check if test exists
+    $test_query = "SELECT id FROM tests WHERE title = ? AND class = ? AND subject = ?";
+    $stmt = $conn->prepare($test_query);
+    $stmt->bind_param("sss", $test_title, $class, $subject);
     
-    // JWT Configuration
-    $secret_key = "your_secret_key_here"; // Change this to a secure secret key
-    $issued_at = time();
-    $expiration_time = $issued_at + (60 * 60 * 24); // Token valid for 24 hours
+    if (!$stmt->execute()) {
+        throw new Exception('Error checking test existence');
+    }
 
-    // Create token payload
-    $payload = array(
-        "iat" => $issued_at,
-        "exp" => $expiration_time,
-        "student_id" => $student_id,
-        "name" => $name,
-        "class" => $class,
-        "subject" => $subject,
-        "test_title" => $test_title
-    );
-
-    // Generate JWT token
-    $token = JWT::encode($payload, $secret_key, 'HS256');
-    
-    echo json_encode([
-        'success' => true, 
-        'message' => 'Registration successful',
-        'token' => $token,
-        'student' => [
-            'id' => $student_id,
-            'name' => $name,
+    $test_result = $stmt->get_result();
+    if ($test_result->num_rows === 0) {
+        Logger::info('Test not found', [
+            'test_title' => $test_title,
             'class' => $class,
-            'subject' => $subject,
-            'test_title' => $test_title
-        ]
+            'subject' => $subject
+        ]);
+        throw new Exception('Test not available for registration');
+    }
+
+    // Register student
+    $insert_sql = "INSERT INTO students (name, class) VALUES (?, ?)";
+    $stmt = $conn->prepare($insert_sql);
+    $stmt->bind_param("ss", $name, $class);
+    
+    if (!$stmt->execute()) {
+        throw new Exception('Error registering student');
+    }
+    
+    $student_id = $stmt->insert_id;
+    
+    // Generate tokens
+    $userData = [
+        'id' => $student_id,
+        'role' => 'student'
+    ];
+    
+    $tokens = TokenManager::generateTokens($userData);
+    
+    Logger::info('Student registered successfully', [
+        'student_id' => $student_id,
+        'class' => $class
     ]);
-} else {
-    http_response_code(500);
-    echo json_encode(['error' => 'Registration failed']);
+    
+    echo ApiResponse::success([
+        'student_id' => $student_id,
+        'access_token' => $tokens['access_token'],
+        'refresh_token' => $tokens['refresh_token'],
+        'expires_in' => $tokens['expires_in'],
+        'test_details' => [
+            'title' => $test_title,
+            'class' => $class,
+            'subject' => $subject
+        ]
+    ], 'Registration successful');
+
+} catch (Exception $e) {
+    Logger::error('Registration failed', [
+        'endpoint' => 'register',
+        'error' => $e->getMessage()
+    ]);
+    
+    $statusCode = 500;
+    if ($e->getMessage() === 'Missing required fields') {
+        $statusCode = 400;
+    } else if ($e->getMessage() === 'Method not allowed') {
+        $statusCode = 405;
+    } else if ($e->getMessage() === 'Test not available for registration') {
+        $statusCode = 404;
+    }
+    
+    echo ApiResponse::error($e->getMessage(), $statusCode);
 }
