@@ -13,3 +13,13 @@
 [2025-05-16 19:46:13] [INFO] Database connection established 
 [2025-05-16 19:46:19] [INFO] Database connection established 
 [2025-05-16 19:46:20] [INFO] Database connection established 
+[2025-05-16 20:52:20] [INFO] Database connection established 
+[2025-05-16 20:52:23] [ERROR] Login failed {"endpoint":"login","error":"Missing username or password"}
+[2025-05-16 20:52:32] [INFO] Database connection established 
+[2025-05-16 20:52:33] [ERROR] Login failed {"endpoint":"login","error":"Missing username or password"}
+[2025-05-16 20:53:05] [INFO] Database connection established 
+[2025-05-16 20:53:05] [INFO] Login failed - Invalid credentials {"username":"admin"}
+[2025-05-16 20:53:05] [ERROR] Login failed {"endpoint":"login","error":"Invalid credentials"}
+[2025-05-16 20:53:22] [INFO] Database connection established 
+[2025-05-16 20:53:22] [INFO] Login failed - Invalid credentials {"username":"admin"}
+[2025-05-16 20:53:22] [ERROR] Login failed {"endpoint":"login","error":"Invalid credentials"}
