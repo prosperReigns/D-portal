@@ -1,0 +1,141 @@
+﻿<footer>
+
+  <!-- =========================================================
+       FOOTER MAIN
+  ========================================================== -->
+
+  <div class="container footer-top">
+
+    <!-- Brand -->
+    <div class="footer-brand-area">
+
+      <a
+        href="{{ url_for('home.home') }}"
+        class="brand"
+        aria-label="{{ app_settings.product_name }} home"
+      >
+
+        <span class="brand-mark">
+          {{ app_settings.product_initial }}
+        </span>
+
+        <span>
+          {{ app_settings.product_name_upper }}
+        </span>
+
+      </a>
+
+      <p>
+        Practical computer-based assessment for schools.
+      </p>
+
+    </div>
+
+
+    <!-- =======================================================
+         PRODUCT LINKS
+    ======================================================== -->
+
+    <div class="footer-column">
+
+      <h3>
+        {{ app_settings.product_name }}
+      </h3>
+
+      <div class="footer-links">
+
+        <a href="{{ url_for('site_pages.download_page') }}">
+          Download
+        </a>
+
+        <a href="{{ url_for('home.home') }}#setup-guide">
+          How to setup
+        </a>
+
+        <a href="{{ url_for('home.home') }}#usage-guide">
+          How to use
+        </a>
+
+        <a href="{{ url_for('site_pages.clients') }}">
+          Schools
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- =======================================================
+         COMPANY LINKS
+    ======================================================== -->
+
+    <div class="footer-column">
+
+      <h3>
+        {{ app_settings.company_name }}
+      </h3>
+
+      <div class="footer-links">
+
+        <a href="{{ url_for('site_pages.about') }}">
+          About us
+        </a>
+
+        <a href="{{ url_for('site_pages.partners') }}">
+          Partners
+        </a>
+
+        <a href="{{ url_for('site_pages.testimonials') }}">
+          Testimonials
+        </a>
+
+        <a href="{{ url_for('site_pages.contact') }}">
+          Contact
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- =======================================================
+         ADMIN
+    ======================================================== -->
+
+    <div class="footer-column">
+
+      <h3>
+        Administration
+      </h3>
+
+      <div class="footer-links">
+
+        <a href="{{ url_for('admin_auth.login') }}">
+          Admin login
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       FOOTER BOTTOM
+  ========================================================== -->
+
+  <div class="container footer-bottom">
+
+    <span>
+      Â© {{ app_settings.copyright_year }} {{ app_settings.company_name }}
+    </span>
+
+    <span>
+      Building better tools for schools and educators.
+    </span>
+
+  </div>
+
+</footer>
+

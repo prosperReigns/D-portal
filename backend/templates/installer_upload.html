@@ -1,0 +1,381 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Installer Administration â€” {{ app_settings.product_name }}{% endblock %}
+
+{% block body_class %}admin-body{% endblock %}
+
+{% block content %}
+
+<main class="admin-page">
+
+  <div class="admin-shell">
+
+<section
+  class="admin-card"
+  aria-labelledby="admin-title"
+>
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <div class="admin-card-header">
+
+    <div>
+
+      <div class="section-kicker">
+        {{ app_settings.product_name }} administration
+      </div>
+
+      <h1 id="admin-title">
+        Manage the Windows installer
+      </h1>
+
+      <p class="admin-intro">
+        Signed in as
+        <strong>{{ session.get('admin_username') }}</strong>.
+        Manage the installer that visitors download from the
+        public {{ app_settings.product_name }} website.
+      </p>
+
+    </div>
+
+    <span
+      class="admin-lock"
+      aria-hidden="true"
+    >
+      âŒ
+    </span>
+
+  </div>
+
+
+  <!-- =====================================================
+       FLASH MESSAGES
+  ====================================================== -->
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% for category, message in messages %}
+
+      <div
+        class="flash admin-flash {{ category }}"
+        role="status"
+        aria-live="polite"
+      >
+        {{ message }}
+      </div>
+
+    {% endfor %}
+
+  {% endwith %}
+
+
+  <!-- =====================================================
+       CURRENT INSTALLER STATUS
+  ====================================================== -->
+
+  <div
+    class="admin-status {% if not installer_exists %}missing{% endif %}"
+  >
+
+    <span
+      class="status-dot"
+      aria-hidden="true"
+    ></span>
+
+    <div>
+
+      <span class="status-label">
+        Current public installer
+      </span>
+
+
+      {% if installer_exists %}
+
+        <strong>
+          {{ installer_name }}
+        </strong>
+
+        <small>
+          {% if installer_size %}
+            {{ '{:,}'.format(installer_size) }} bytes
+            Â·
+          {% endif %}
+
+          Available for public download
+        </small>
+
+      {% else %}
+
+        <strong>
+          No installer available
+        </strong>
+
+        <small>
+          Upload an installer to enable public downloads.
+        </small>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       UPLOAD FORM
+  ====================================================== -->
+
+  <form
+    class="upload-form"
+    method="post"
+    enctype="multipart/form-data"
+  >
+
+    <input
+      type="hidden"
+      name="csrf_token"
+      value="{{ csrf_token() }}"
+    >
+
+    <label for="installer">
+
+      Upload a replacement installer
+
+      <span>
+        Required
+      </span>
+
+    </label>
+
+
+    <div class="file-drop">
+
+      <input
+        id="installer"
+        name="installer"
+        type="file"
+        accept="{{ installer_accept }}"
+        required
+      >
+
+
+      <div class="file-drop-content">
+
+        <span
+          class="upload-icon"
+          aria-hidden="true"
+        >
+          â†‘
+        </span>
+
+        <strong>
+          Drop your {{ installer_extension }} here
+        </strong>
+
+        <small>
+          or choose a file from your computer
+        </small>
+
+        <em>
+          Windows executable Â· Max {{ '{:,}'.format(upload_max_bytes) }} bytes
+        </em>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="button button-primary upload-button"
+      type="submit"
+    >
+
+      <span>
+        Upload installer
+      </span>
+
+      <span aria-hidden="true">
+        â†’
+      </span>
+
+    </button>
+
+  </form>
+
+
+  <!-- =====================================================
+       ADMIN FOOTER
+  ====================================================== -->
+
+  <div class="admin-footer">
+
+    <span>
+      Protected with administrator authentication
+    </span>
+
+
+    <form
+      method="post"
+      action="{{ url_for('admin_auth.logout') }}"
+    >
+
+      <input
+        type="hidden"
+        name="csrf_token"
+        value="{{ csrf_token() }}"
+      >
+
+      <button
+        class="text-button"
+        type="submit"
+      >
+        Sign out
+      </button>
+
+    </form>
+
+
+    <a
+      class="admin-back"
+      href="{{ url_for('home.home') }}"
+    >
+      Back to public website
+      <span aria-hidden="true">
+        â†—
+      </span>
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     ADMIN FOOTNOTE
+======================================================== -->
+
+<p class="admin-note">
+  {{ app_settings.product_name }} Â· Installer management Â· {{ app_settings.company_name }}
+</p>
+
+  </div>
+
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+  const fileInput = document.getElementById("installer");
+  const dropZone = document.querySelector(".file-drop");
+
+  if (fileInput && dropZone) {
+
+    const fileName = dropZone.querySelector("strong");
+
+
+    fileInput.addEventListener("change", () => {
+
+      if (fileInput.files.length) {
+
+        fileName.textContent =
+          fileInput.files[0].name;
+
+        dropZone.classList.add("has-file");
+
+      }
+
+    });
+
+
+    /*
+     * Drag and drop support
+     */
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+
+      dropZone.addEventListener(eventName, (event) => {
+
+        event.preventDefault();
+
+        dropZone.classList.add("dragging");
+
+      });
+
+    });
+
+
+    ["dragleave", "drop"].forEach((eventName) => {
+
+      dropZone.addEventListener(eventName, (event) => {
+
+        event.preventDefault();
+
+        dropZone.classList.remove("dragging");
+
+      });
+
+    });
+
+
+    dropZone.addEventListener("drop", (event) => {
+
+      const files = event.dataTransfer.files;
+
+      if (!files.length) {
+        return;
+      }
+
+      const file = files[0];
+
+      /*
+       * Only allow Windows executable files.
+       */
+
+      const installerExtension = {{ installer_extension|tojson }};
+
+      if (!file.name.toLowerCase().endsWith(installerExtension.toLowerCase())) {
+
+        alert(`Please select a Windows ${installerExtension} installer.`);
+
+        return;
+
+      }
+
+      /*
+       * Assign the dropped file to the input.
+       */
+
+      try {
+
+        const dataTransfer = new DataTransfer();
+
+        dataTransfer.items.add(file);
+
+        fileInput.files = dataTransfer.files;
+
+        fileName.textContent = file.name;
+
+        dropZone.classList.add("has-file");
+
+      } catch (error) {
+
+        console.error(
+          "Unable to process dropped file:",
+          error
+        );
+
+      }
+
+    });
+
+  }
+
+</script>
+
+{% endblock %}
+

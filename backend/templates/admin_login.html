@@ -1,0 +1,114 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Admin Login — {{ app_settings.product_name }}{% endblock %}
+
+{% block body_class %}admin-body{% endblock %}
+
+{% block content %}
+
+<main class="auth-page">
+
+  <section
+    class="auth-card"
+    aria-labelledby="login-title"
+  >
+
+<!-- =======================================================
+     BRAND / CONTEXT
+======================================================== -->
+<div class="section-kicker">
+  {{ app_settings.product_name }} administration
+</div>
+
+
+<h1 id="login-title">
+  Welcome back.
+</h1>
+
+
+<p class="auth-intro">
+  Sign in to manage the {{ app_settings.product_name }} website, Windows installer,
+  downloads, and other public-facing content.
+</p>
+
+
+<!-- =======================================================
+     LOGIN FORM
+======================================================== -->
+<form
+  class="auth-form"
+  method="post"
+>
+
+  <input
+    type="hidden"
+    name="csrf_token"
+    value="{{ csrf_token() }}"
+  >
+
+  <label>
+    Username
+
+    <input
+      name="username"
+      autocomplete="username"
+      placeholder="Enter your username"
+      required
+      autofocus
+    >
+  </label>
+
+
+  <label>
+    Password
+
+    <input
+      type="password"
+      name="password"
+      autocomplete="current-password"
+      placeholder="Enter your password"
+      required
+    >
+  </label>
+
+
+  <button
+    class="button button-primary"
+    type="submit"
+  >
+    Sign in
+    <span aria-hidden="true">→</span>
+  </button>
+
+</form>
+
+
+<!-- =======================================================
+     REGISTRATION
+======================================================== -->
+{% if app_settings.allow_admin_registration %}
+
+  <p class="auth-switch">
+    First administrator?
+
+    <a href="{{ url_for('admin_auth.register') }}">
+      Create the account
+    </a>
+  </p>
+
+{% endif %}
+
+
+<!-- =======================================================
+     ADMIN NOTE
+======================================================== -->
+<p class="auth-note">
+  This area is restricted to authorized {{ app_settings.product_name }} administrators.
+</p>
+
+  </section>
+
+</main>
+
+{% endblock %}
+

@@ -1,0 +1,330 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Contact {{ app_settings.company_name }} — {{ app_settings.product_name }}{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <!-- =========================================================
+       PAGE HERO
+  ========================================================== -->
+
+  <section class="page-hero container">
+
+<div class="section-kicker">
+  Get in touch
+</div>
+
+<h1>
+  Have a question about
+  <br>
+  <span>{{ app_settings.product_name }}?</span>
+</h1>
+
+<p>
+  Whether you are interested in bringing {{ app_settings.product_name }} to your school,
+  need help getting started, or already use the platform, our team
+  is here to help.
+</p>
+
+  </section>
+
+  <!-- =========================================================
+       CONTACT AREA
+  ========================================================== -->
+
+  <section class="section container contact-page-grid">
+
+<div class="contact-info">
+
+  <div class="section-kicker">
+    Talk to {{ app_settings.company_name }}
+  </div>
+
+  <h2>
+    Let's make your
+    <br>
+    <span>exam process simpler.</span>
+  </h2>
+
+  <p>
+    Tell us what your school needs and we will help you understand
+    the next step.
+  </p>
+
+
+  <!-- Email -->
+  <a href="mailto:{{ app_settings.contact_email }}">
+    <strong>— {{ app_settings.contact_email }}</strong>
+  </a>
+
+
+  <!-- Support hours -->
+  <span>
+    <strong>—</strong>
+    {{ app_settings.support_hours }}
+  </span>
+
+
+  <!-- Support topics -->
+  <div class="contact-support-list">
+
+    <h3>
+      We can help with:
+    </h3>
+
+    <ul>
+      <li>{{ app_settings.product_name }} installation and setup</li>
+      <li>Getting your school started</li>
+      <li>Using {{ app_settings.product_name }}</li>
+      <li>Technical support</li>
+      <li>Licensing and subscriptions</li>
+      <li>General enquiries</li>
+    </ul>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     CONTACT FORM
+======================================================== -->
+<form
+  class="standalone-form"
+  action="{{ url_for('contact_page.contact_page') }}"
+  method="post"
+>
+
+  <input
+    type="hidden"
+    name="csrf_token"
+    value="{{ csrf_token() }}"
+  >
+
+  <div class="section-kicker">
+    Send us a message
+  </div>
+
+  <p>
+    Complete the form below and our team will get back to you.
+  </p>
+
+
+  <label>
+    Your name
+
+    <input
+      name="name"
+      placeholder="e.g. Ada Okafor"
+      autocomplete="name"
+      required
+    >
+  </label>
+
+
+  <label>
+    Email address
+
+    <input
+      type="email"
+      name="email"
+      placeholder="you@school.com"
+      autocomplete="email"
+      required
+    >
+  </label>
+
+
+  <label>
+    How can we help?
+
+    <textarea
+      name="message"
+      placeholder="Tell us about your school, your question, or the help you need..."
+      rows="7"
+      required
+    ></textarea>
+  </label>
+
+
+  <button
+    class="button button-primary"
+    type="submit"
+  >
+    Send message →
+  </button>
+
+</form>
+
+  </section>
+
+  <!-- =========================================================
+       COMMON QUESTIONS
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container">
+
+  <div class="section-kicker">
+    Before you contact us
+  </div>
+
+  <div class="values-grid">
+
+    <article>
+
+      <strong>01</strong>
+
+      <h3>
+        Need help installing {{ app_settings.product_name }}?
+      </h3>
+
+      <p>
+        Start with our setup guide for a step-by-step walkthrough
+        of installing and preparing {{ app_settings.product_name }} on Windows.
+      </p>
+
+      <a class="text-link"
+         href="{{ url_for('site_pages.download_page') }}">
+        Get {{ app_settings.product_name }} →
+      </a>
+
+    </article>
+
+
+    <article>
+
+      <strong>02</strong>
+
+      <h3>
+        Want to learn how it works?
+      </h3>
+
+      <p>
+        Explore our user guides and learn how {{ app_settings.product_name }} fits into
+        your school's computer-based examination workflow.
+      </p>
+
+      <a class="text-link"
+         href="{{ url_for('home.home') }}#usage-guide">
+        View user guide →
+      </a>
+
+    </article>
+
+
+    <article>
+
+      <strong>03</strong>
+
+      <h3>
+        Looking for technical support?
+      </h3>
+
+      <p>
+        Tell us what you are experiencing in the contact form and
+        include as much useful information as possible so we can
+        help you more effectively.
+      </p>
+
+    </article>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       SCHOOL CTA
+  ========================================================== -->
+
+  <section class="section container split-content">
+
+<div>
+
+  <div class="section-kicker">
+    For schools
+  </div>
+
+  <h2>
+    Thinking about
+    <br>
+    <span>using {{ app_settings.product_name }}?</span>
+  </h2>
+
+</div>
+
+<div>
+
+  <p class="large-copy">
+    You don't have to figure everything out on your own.
+  </p>
+
+  <p>
+    Contact {{ app_settings.company_name }} and tell us about your school's
+    examination needs. We can help you understand how {{ app_settings.product_name }}
+    works and what you need to get started.
+  </p>
+
+  <div class="hero-actions">
+
+    <a class="button button-primary"
+       href="{{ url_for('site_pages.download_page') }}">
+      Download {{ app_settings.product_name }}
+    </a>
+
+    <a class="text-link"
+       href="mailto:{{ app_settings.contact_email }}">
+      Email us →
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       FINAL CTA
+  ========================================================== -->
+
+  <section class="download-section">
+
+<div class="container download-inner">
+
+  <div>
+
+    <div class="section-kicker light">
+      {{ app_settings.product_name }}
+    </div>
+
+    <h2>
+      Better tools for
+      <br>
+      <span>better assessments.</span>
+    </h2>
+
+    <p>
+      Explore {{ app_settings.product_name }} and discover a practical way to manage
+      computer-based examinations at your school.
+    </p>
+
+    <a class="button button-light"
+       href="{{ url_for('site_pages.download_page') }}">
+      â†“ &nbsp; Download {{ app_settings.product_name }} for Windows
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+</main>
+
+{% endblock %}
+

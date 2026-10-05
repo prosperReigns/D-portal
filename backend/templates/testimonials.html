@@ -1,0 +1,346 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Testimonials â€” {{ app_settings.product_name }}{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <!-- =========================================================
+       PAGE HERO
+  ========================================================== -->
+
+  <section class="page-hero container">
+
+<div class="section-kicker">
+  From the {{ app_settings.product_name }} community
+</div>
+
+<h1>
+  Built for schools.
+  <br>
+  <span>Experienced by educators.</span>
+</h1>
+
+<p>
+  Discover what schools and educators have to say about using
+  {{ app_settings.product_name }} to manage their computer-based examinations.
+</p>
+
+  </section>
+
+  <!-- =========================================================
+       TESTIMONIALS
+  ========================================================== -->
+
+  <section class="section container quote-grid">
+
+<article class="quote-card">
+
+  <span class="quote-mark">
+    â€œ
+  </span>
+
+  <blockquote>
+    {{ app_settings.product_name }} gives our school a more structured way to organize
+    computer-based examinations. The workflow is straightforward
+    and easy for our team to understand.
+  </blockquote>
+
+  <strong>
+    School Administrator
+  </strong>
+
+  <small>
+    {{ app_settings.product_name }} School Community
+  </small>
+
+</article>
+
+
+<article class="quote-card featured">
+
+  <span class="quote-mark">
+    â€œ
+  </span>
+
+  <blockquote>
+    Having an examination platform that can operate within our
+    school's local environment makes a big difference. We can
+    prepare and conduct assessments without making internet
+    availability the center of the process.
+  </blockquote>
+
+  <strong>
+    ICT Coordinator
+  </strong>
+
+  <small>
+    {{ app_settings.product_name }} School Community
+  </small>
+
+</article>
+
+
+<article class="quote-card">
+
+  <span class="quote-mark">
+    â€œ
+  </span>
+
+  <blockquote>
+    What we appreciate most is the focus on simplicity. Our goal
+    is to conduct a good examination, and the software gives our
+    teachers and students a straightforward environment to do that.
+  </blockquote>
+
+  <strong>
+    Academic Coordinator
+  </strong>
+
+  <small>
+    {{ app_settings.product_name }} School Community
+  </small>
+
+</article>
+
+  </section>
+
+  <!-- =========================================================
+       WHAT SCHOOLS VALUE
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container">
+
+  <div class="section-kicker">
+    Why schools choose {{ app_settings.product_name }}
+  </div>
+
+  <div class="values-grid">
+
+    <article>
+
+      <strong>01</strong>
+
+      <h3>
+        Simplicity
+      </h3>
+
+      <p>
+        A straightforward examination environment helps teachers
+        and administrators spend less time figuring out software
+        and more time preparing for the assessment itself.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>02</strong>
+
+      <h3>
+        Offline capability
+      </h3>
+
+      <p>
+        Schools can operate their examination environment through
+        their local network without depending on continuous
+        internet connectivity.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>03</strong>
+
+      <h3>
+        Organized assessments
+      </h3>
+
+      <p>
+        Examination information, questions, students, and results
+        can be managed within a structured school workflow.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>04</strong>
+
+      <h3>
+        A focused student experience
+      </h3>
+
+      <p>
+        Students get an examination environment designed to keep
+        their attention on the assessment rather than unnecessary
+        distractions.
+      </p>
+
+    </article>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       SCHOOL NETWORK CTA
+  ========================================================== -->
+
+  <section class="section container split-content">
+
+<div>
+
+  <div class="section-kicker">
+    Our growing network
+  </div>
+
+  <h2>
+    Your school could
+    <br>
+    <span>be next.</span>
+  </h2>
+
+</div>
+
+<div>
+
+  <p class="large-copy">
+    {{ app_settings.product_name }} is built for schools that want a practical,
+    dependable approach to computer-based assessment.
+  </p>
+
+  <p>
+    If your school is exploring CBT for the first time or looking
+    for a better way to manage its existing examination process,
+    we would be happy to show you how {{ app_settings.product_name }} works.
+  </p>
+
+  <div class="hero-actions">
+
+    <a class="button button-primary"
+       href="{{ url_for('site_pages.download_page') }}">
+      Download {{ app_settings.product_name }}
+    </a>
+
+    <a class="text-link"
+       href="{{ url_for('site_pages.contact') }}">
+      Talk to us â†’
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       ADD YOUR TESTIMONIAL
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container split-content">
+
+  <div>
+
+    <div class="section-kicker">
+      Using {{ app_settings.product_name }}?
+    </div>
+
+    <h2>
+      We'd love to
+      <br>
+      <span>hear from you.</span>
+    </h2>
+
+  </div>
+
+  <div>
+
+    <p class="large-copy">
+      If your school is using {{ app_settings.product_name }}, your experience can help
+      other schools understand what it is like to move to a
+      computer-based examination workflow.
+    </p>
+
+    <a class="text-link"
+       href="{{ url_for('site_pages.contact') }}">
+      Share your experience â†’
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       FINAL CTA
+  ========================================================== -->
+
+  <section class="download-section">
+
+<div class="container download-inner">
+
+  <div>
+
+    <div class="section-kicker light">
+      {{ app_settings.product_name }}
+    </div>
+
+    <h2>
+      A simpler way
+      <br>
+      <span>to run exams.</span>
+    </h2>
+
+    <p>
+      See why schools are moving toward a more practical approach
+      to computer-based assessment.
+    </p>
+
+    <a class="button button-light"
+       href="{{ url_for('site_pages.download_page') }}">
+      â†“ &nbsp; Download {{ app_settings.product_name }} for Windows
+    </a>
+
+  </div>
+
+  <div class="download-stat">
+
+    <strong>
+      {{ '{:,}'.format(downloads) }}<sup>+</sup>
+    </strong>
+
+    <span>
+      downloads and counting
+    </span>
+
+    <div class="stat-line">
+      <i></i>
+    </div>
+
+    <small>
+      Built by {{ app_settings.company_name }} for schools.
+    </small>
+
+  </div>
+
+</div>
+
+  </section>
+
+</main>
+
+{% endblock %}
+

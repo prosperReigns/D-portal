@@ -1,0 +1,379 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Partners â€” {{ app_settings.product_name }}{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <!-- =========================================================
+       PAGE HERO
+  ========================================================== -->
+
+  <section class="page-hero container">
+
+<div class="section-kicker">
+  {{ app_settings.product_name }} partners
+</div>
+
+<h1>
+  Better technology is
+  <br>
+  <span>a team effort.</span>
+</h1>
+
+<p>
+  We work with organizations, educators, technology providers, and
+  education-focused partners who share our goal of making practical
+  digital assessment more accessible to schools.
+</p>
+
+  </section>
+
+  <!-- =========================================================
+       PARTNER TYPES
+  ========================================================== -->
+
+  <section class="section container">
+
+<div class="section-kicker">
+  Who we work with
+</div>
+
+<div class="partner-grid">
+
+  <!-- Education -->
+  <article class="partner-card">
+
+    <span>
+      EDU
+    </span>
+
+    <h3>
+      Education organizations
+    </h3>
+
+    <p>
+      We collaborate with education organizations, school networks,
+      and institutions that are helping schools adopt better
+      approaches to teaching, learning, and assessment.
+    </p>
+
+  </article>
+
+
+  <!-- Schools -->
+  <article class="partner-card">
+
+    <span>
+      SCH
+    </span>
+
+    <h3>
+      School networks
+    </h3>
+
+    <p>
+      Working with groups of schools can make it easier to introduce
+      structured computer-based assessment and provide consistent
+      support across multiple locations.
+    </p>
+
+  </article>
+
+
+  <!-- ICT -->
+  <article class="partner-card">
+
+    <span>
+      ICT
+    </span>
+
+    <h3>
+      Technology partners
+    </h3>
+
+    <p>
+      We welcome technology partners who can support school
+      infrastructure, local networking, hardware deployment,
+      connectivity, and other technical requirements.
+    </p>
+
+  </article>
+
+
+  <!-- Training -->
+  <article class="partner-card">
+
+    <span>
+      TRN
+    </span>
+
+    <h3>
+      Training partners
+    </h3>
+
+    <p>
+      Training organizations and education consultants can help
+      schools build the knowledge and confidence needed to make
+      effective use of {{ app_settings.product_name }}.
+    </p>
+
+  </article>
+
+
+  <!-- Deployment -->
+  <article class="partner-card">
+
+    <span>
+      DEP
+    </span>
+
+    <h3>
+      Deployment partners
+    </h3>
+
+    <p>
+      Partners who work directly with schools can help with
+      computer setup, local network configuration, installation,
+      and examination-day preparation.
+    </p>
+
+  </article>
+
+
+  <!-- Strategic -->
+  <article class="partner-card">
+
+    <span>
+      +1
+    </span>
+
+    <h3>
+      Strategic partners
+    </h3>
+
+    <p>
+      We are open to partnerships that create meaningful value for
+      schools and help extend the reach and usefulness of {{ app_settings.product_name }}.
+    </p>
+
+  </article>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       PARTNERSHIP APPROACH
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container split-content">
+
+  <div>
+
+    <div class="section-kicker">
+      Partnership with purpose
+    </div>
+
+    <h2>
+      The goal is not
+      <br>
+      <span>just another partnership.</span>
+    </h2>
+
+  </div>
+
+  <div>
+
+    <p class="large-copy">
+      We believe partnerships should solve real problems.
+    </p>
+
+    <p>
+      Whether the need is school deployment, teacher training,
+      infrastructure, technical support, or reaching more schools,
+      we look for relationships that create measurable value for
+      the people ultimately using the technology.
+    </p>
+
+    <p>
+      Our focus remains simple: help schools access practical tools
+      that make computer-based assessment easier to manage.
+    </p>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       CURRENT PARTNERS
+  ========================================================== -->
+
+  <section class="section container">
+
+<div class="section-kicker">
+  Our partner community
+</div>
+
+<div class="centered-cta">
+
+  <h2>
+    Growing the
+    <br>
+    <span>{{ app_settings.product_name }} ecosystem.</span>
+  </h2>
+
+  <p>
+    As our partnership network grows, we will showcase the
+    organizations working with us to bring {{ app_settings.product_name }} to more
+    schools and communities.
+  </p>
+
+  <div class="hero-actions">
+
+    <a
+      class="button button-primary"
+      href="{{ url_for('site_pages.contact') }}"
+    >
+      Become a partner â†’
+    </a>
+
+    <a
+      class="text-link"
+      href="{{ url_for('site_pages.clients') }}"
+    >
+      See schools using {{ app_settings.product_name }} â†’
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       PARTNERSHIP OPPORTUNITIES
+  ========================================================== -->
+
+  <section class="section container">
+
+<div class="section-kicker">
+  Possible ways to work together
+</div>
+
+<div class="values-grid">
+
+  <article>
+
+    <strong>01</strong>
+
+    <h3>
+      School deployment
+    </h3>
+
+    <p>
+      Help schools install, configure, and prepare their local
+      {{ app_settings.product_name }} environment.
+    </p>
+
+  </article>
+
+
+  <article>
+
+    <strong>02</strong>
+
+    <h3>
+      Teacher training
+    </h3>
+
+    <p>
+      Help teachers and administrators understand the platform and
+      confidently integrate it into their examination workflow.
+    </p>
+
+  </article>
+
+
+  <article>
+
+    <strong>03</strong>
+
+    <h3>
+      Infrastructure
+    </h3>
+
+    <p>
+      Support schools with the computers, networking, and technical
+      infrastructure required for successful CBT deployment.
+    </p>
+
+  </article>
+
+
+  <article>
+
+    <strong>04</strong>
+
+    <h3>
+      Education outreach
+    </h3>
+
+    <p>
+      Work with us to introduce practical digital assessment tools
+      to more schools and education communities.
+    </p>
+
+  </article>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       FINAL CTA
+  ========================================================== -->
+
+  <section class="download-section">
+
+<div class="container download-inner">
+
+  <div>
+
+    <div class="section-kicker light">
+      Work with {{ app_settings.company_name }}
+    </div>
+
+    <h2>
+      Building something
+      <br>
+      <span>useful for schools?</span>
+    </h2>
+
+    <p>
+      Tell us about your organization, what you do, and how you
+      think we could create value together.
+    </p>
+
+    <a
+      class="button button-light"
+      href="{{ url_for('site_pages.contact') }}"
+    >
+      Start a conversation â†’
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+</main>
+
+{% endblock %}
+

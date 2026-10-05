@@ -1,0 +1,535 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Download {{ app_settings.product_name }} â€” Windows Installer{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <!-- =========================================================
+       DOWNLOAD HERO
+  ========================================================== -->
+
+  <section class="download-page-hero">
+
+<div class="container download-page-inner">
+
+  <div class="section-kicker light">
+    {{ app_settings.product_name }} for Windows
+  </div>
+
+  <h1>
+    Your school's next
+    <br>
+    <span>exam day starts here.</span>
+  </h1>
+
+  <p>
+    Download the {{ app_settings.product_name }} Windows installer and set up a
+    practical, offline-first computer-based examination environment
+    for your school.
+  </p>
+
+  <a
+    class="button button-light"
+    href="{{ url_for('download.download') }}"
+  >
+    â†“ &nbsp; Download {{ app_settings.product_name }} for Windows
+  </a>
+
+  <small class="download-meta">
+    Windows 10 or later Â· Free to download
+  </small>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       DOWNLOAD STEPS
+  ========================================================== -->
+
+  <section class="section container download-details">
+
+<article>
+
+  <span class="feature-icon">
+    01
+  </span>
+
+  <h3>
+    Download
+  </h3>
+
+  <p>
+    Download the {{ app_settings.product_name }} installer directly from this page and
+    save it somewhere easy to find on your Windows computer.
+  </p>
+
+</article>
+
+
+<article>
+
+  <span class="feature-icon">
+    02
+  </span>
+
+  <h3>
+    Install
+  </h3>
+
+  <p>
+    Open the installer and follow the setup process. {{ app_settings.product_name }}
+    will guide you through the installation of the application.
+  </p>
+
+</article>
+
+
+<article>
+
+  <span class="feature-icon">
+    03
+  </span>
+
+  <h3>
+    Configure
+  </h3>
+
+  <p>
+    Prepare your school environment, configure the required
+    settings, and get your examination system ready.
+  </p>
+
+</article>
+
+
+<article>
+
+  <span class="feature-icon">
+    04
+  </span>
+
+  <h3>
+    Run your exams
+  </h3>
+
+  <p>
+    Connect the computers through your school's local network and
+    give students access to their computer-based examinations.
+  </p>
+
+</article>
+
+  </section>
+
+  <!-- =========================================================
+       WHAT YOU ARE GETTING
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container split-content">
+
+  <div>
+
+    <div class="section-kicker">
+      About the application
+    </div>
+
+    <h2>
+      Built for the
+      <br>
+      <span>school environment.</span>
+    </h2>
+
+  </div>
+
+  <div>
+
+    <p class="large-copy">
+      {{ app_settings.product_name }} is an offline-first CBT platform designed to help
+      schools manage computer-based examinations without making
+      constant internet access a requirement.
+    </p>
+
+    <p>
+      Once installed, {{ app_settings.product_name }} can operate within your school's
+      local network, allowing students to access the examination
+      environment from connected computers.
+    </p>
+
+    <p>
+      The platform brings important examination tasks into one
+      environment, from preparing assessments and managing students
+      to conducting examinations and working with results.
+    </p>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       KEY FEATURES
+  ========================================================== -->
+
+  <section class="section container">
+
+<div class="section-kicker">
+  What {{ app_settings.product_name }} gives your school
+</div>
+
+<div class="intro-grid">
+
+  <h2>
+    Everything starts
+    <br>
+    <span>with one installation.</span>
+  </h2>
+
+  <div>
+
+    <p class="large-copy">
+      {{ app_settings.product_name }} provides the foundation for a structured
+      computer-based examination workflow within your school.
+    </p>
+
+  </div>
+
+</div>
+
+
+<div class="feature-grid">
+
+  <article class="feature">
+
+    <span class="feature-icon">
+      âŒ
+    </span>
+
+    <h3>
+      Offline-first operation
+    </h3>
+
+    <p>
+      Run your examination environment without depending on
+      continuous internet connectivity.
+    </p>
+
+  </article>
+
+
+  <article class="feature">
+
+    <span class="feature-icon">
+      â–¤
+    </span>
+
+    <h3>
+      Question management
+    </h3>
+
+    <p>
+      Organize examination questions and prepare assessments
+      for your students.
+    </p>
+
+  </article>
+
+
+  <article class="feature">
+
+    <span class="feature-icon">
+      â™™
+    </span>
+
+    <h3>
+      Student management
+    </h3>
+
+    <p>
+      Keep candidate and examination information organized within
+      your school's CBT environment.
+    </p>
+
+  </article>
+
+
+  <article class="feature">
+
+    <span class="feature-icon">
+      âœ“
+    </span>
+
+    <h3>
+      Examination delivery
+    </h3>
+
+    <p>
+      Give students a focused environment for completing their
+      computer-based assessments.
+    </p>
+
+  </article>
+
+
+  <article class="feature">
+
+    <span class="feature-icon">
+      âœ¦
+    </span>
+
+    <h3>
+      Results
+    </h3>
+
+    <p>
+      Review examination performance and work with the results
+      generated from your assessments.
+    </p>
+
+  </article>
+
+
+  <article class="feature">
+
+    <span class="feature-icon">
+      â—Ž
+    </span>
+
+    <h3>
+      School-focused workflow
+    </h3>
+
+    <p>
+      Designed around the practical requirements of running
+      computer-based examinations in schools.
+    </p>
+
+  </article>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       SETUP GUIDE
+  ========================================================== -->
+
+  <section class="section container">
+
+<div class="guides-heading">
+
+  <div>
+
+    <div class="section-kicker">
+      Need help getting started?
+    </div>
+
+    <h2>
+      We'll show you
+      <br>
+      <span>how to set it up.</span>
+    </h2>
+
+  </div>
+
+  <p>
+    Follow the {{ app_settings.product_name }} setup guide to move from downloading the
+    installer to having your school ready for its first examination.
+  </p>
+
+</div>
+
+
+<div class="guide-grid">
+
+  <article class="guide-card setup">
+
+    <div class="guide-art">
+
+      <div class="guide-art-overlay">
+
+        <span class="guide-badge">
+          SETUP GUIDE
+        </span>
+
+        <div class="play-button" aria-hidden="true">
+          â–¶
+        </div>
+
+        <span class="guide-duration">
+          WATCH GUIDE
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="guide-content">
+
+      <span class="guide-type">
+        Getting started
+      </span>
+
+      <h3>
+        How to setup {{ app_settings.product_name }}
+      </h3>
+
+      <p>
+        Learn how to install and prepare {{ app_settings.product_name }} on your
+        Windows computer.
+      </p>
+
+      <a
+        class="text-link"
+        href="{{ url_for('home.home') }}#setup-guide"
+      >
+        View setup guide â†’
+      </a>
+
+    </div>
+
+  </article>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       DOWNLOAD COUNTER
+  ========================================================== -->
+
+  <section class="container download-counter">
+
+<strong>
+  {{ '{:,}'.format(downloads) }}<sup>+</sup>
+</strong>
+
+<span>
+  {{ app_settings.product_name }} downloads and counting
+</span>
+
+  </section>
+
+  <!-- =========================================================
+       SUPPORT
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container split-content">
+
+  <div>
+
+    <div class="section-kicker">
+      Need assistance?
+    </div>
+
+    <h2>
+      We're here to
+      <br>
+      <span>help you get started.</span>
+    </h2>
+
+  </div>
+
+  <div>
+
+    <p class="large-copy">
+      If you have questions about installation, configuration,
+      licensing, or using {{ app_settings.product_name }} in your school, our team
+      can help.
+    </p>
+
+    <div class="hero-actions">
+
+      <a
+        class="button button-primary"
+        href="{{ url_for('site_pages.contact') }}"
+      >
+        Contact support
+      </a>
+
+      <a
+        class="text-link"
+        href="{{ url_for('home.home') }}#usage-guide"
+      >
+        Learn how to use {{ app_settings.product_name }} â†’
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       FINAL DOWNLOAD CTA
+  ========================================================== -->
+
+  <section class="download-section">
+
+<div class="container download-inner">
+
+  <div>
+
+    <div class="section-kicker light">
+      {{ app_settings.product_name }} for Windows
+    </div>
+
+    <h2>
+      Ready to get
+      <br>
+      <span>started?</span>
+    </h2>
+
+    <p>
+      Download {{ app_settings.product_name }} and start building a more practical
+      computer-based examination environment for your school.
+    </p>
+
+    <a
+      class="button button-light"
+      href="{{ url_for('download.download') }}"
+    >
+      â†“ &nbsp; Download {{ app_settings.product_name }}
+    </a>
+
+  </div>
+
+
+  <div class="download-stat">
+
+    <strong>
+      {{ '{:,}'.format(downloads) }}<sup>+</sup>
+    </strong>
+
+    <span>
+      downloads and counting
+    </span>
+
+    <div class="stat-line">
+      <i></i>
+    </div>
+
+    <small>
+      Built by {{ app_settings.company_name }}.
+    </small>
+
+  </div>
+
+</div>
+
+  </section>
+
+</main>
+
+{% endblock %}
+

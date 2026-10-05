@@ -1,0 +1,228 @@
+﻿<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<meta
+name="theme-color"
+content="#0f4db8"
+
+>
+
+  <!-- =========================================================
+       PRIMARY SEO
+  ========================================================== -->
+
+  <title>
+    {% block title %}
+      {{ app_settings.product_name }} — Offline Computer-Based Testing for Schools
+    {% endblock %}
+  </title>
+
+<meta
+name="description"
+content="{% block meta_description %}{{ app_settings.product_name }} is an offline-first computer-based testing platform built by {{ app_settings.company_name }} to help schools create, manage, deliver, and assess examinations.{% endblock %}"
+
+>
+
+<meta
+name="robots"
+content="index, follow"
+
+>
+
+  <!-- =========================================================
+       CANONICAL URL
+  ========================================================== -->
+
+{% block canonical %}
+{% endblock %}
+
+  <!-- =========================================================
+       OPEN GRAPH / SOCIAL SHARING
+  ========================================================== -->
+
+<meta
+property="og:type"
+content="website"
+
+>
+
+<meta
+property="og:site_name"
+content="{{ app_settings.product_name }}"
+
+>
+
+<meta
+property="og:title"
+content="{% block og_title %}{{ app_settings.product_name }} — Computer-Based Testing for Schools{% endblock %}"
+
+>
+
+<meta
+property="og:description"
+content="{% block og_description %}A practical, offline-first computer-based testing platform for schools, built by {{ app_settings.company_name }}.{% endblock %}"
+
+>
+
+{% block og_image %}
+{% endblock %}
+
+  <!-- =========================================================
+       TWITTER / X CARD
+  ========================================================== -->
+
+<meta
+name="twitter:card"
+content="summary_large_image"
+
+>
+
+<meta
+name="twitter:title"
+content="{% block twitter_title %}{{ app_settings.product_name }} — Computer-Based Testing for Schools{% endblock %}"
+
+>
+
+<meta
+name="twitter:description"
+content="{% block twitter_description %}Run computer-based examinations with a practical, offline-first platform designed for schools.{% endblock %}"
+
+>
+
+  <!-- =========================================================
+       STYLES
+  ========================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='styles.css') }}"
+  >
+
+{% block head %}
+{% endblock %}
+
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================== -->
+
+{% include "partials/site_nav.html" %}
+
+  <!-- =========================================================
+       FLASH MESSAGES
+  ========================================================== -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+  <div class="flash-stack">
+
+    {% for category, message in messages %}
+
+      <div
+        class="flash {{ category }}"
+        role="status"
+        aria-live="polite"
+      >
+        {{ message }}
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+{% endif %}
+
+{% endwith %}
+
+  <!-- =========================================================
+       PAGE CONTENT
+  ========================================================== -->
+
+{% block content %}
+{% endblock %}
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+{% include "partials/site_footer.html" %}
+
+  <!-- =========================================================
+       MOBILE NAVIGATION
+  ========================================================== -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const menu = document.getElementById("menu-button");
+      const links = document.getElementById("nav-links");
+
+      if (!menu || !links) {
+        return;
+      }
+
+      menu.addEventListener("click", () => {
+
+        const open = links.classList.toggle("open");
+
+        menu.classList.toggle("is-open", open);
+
+        menu.setAttribute(
+          "aria-expanded",
+          String(open)
+        );
+
+      });
+
+
+      links
+        .querySelectorAll("a")
+        .forEach((link) => {
+
+          link.addEventListener("click", () => {
+
+            links.classList.remove("open");
+
+            menu.classList.remove("is-open");
+
+            menu.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          });
+
+        });
+
+    });
+
+  </script>
+
+  <!-- =========================================================
+       PAGE-SPECIFIC SCRIPTS
+  ========================================================== -->
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+
+</html>
+

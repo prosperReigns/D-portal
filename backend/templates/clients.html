@@ -1,0 +1,366 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Schools Using {{ app_settings.product_name }} — {{ app_settings.product_name }}{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <!-- =========================================================
+       PAGE HERO
+  ========================================================== -->
+
+  <section class="page-hero container">
+
+<div class="section-kicker">
+  The {{ app_settings.product_name }} network
+</div>
+
+<h1>
+  Schools choosing
+  <br>
+  <span>a better way to assess.</span>
+</h1>
+
+<p>
+  Meet the schools and learning communities using {{ app_settings.product_name }} to
+  deliver computer-based examinations and create a more organized
+  assessment experience for their students.
+</p>
+
+  </section>
+
+  <!-- =========================================================
+       SCHOOL NETWORK
+  ========================================================== -->
+
+  <section class="section container clients-layout">
+
+<!-- =======================================================
+     NETWORK SUMMARY
+======================================================== -->
+<div class="network-summary">
+
+  <strong>
+    {{ schools|length }}
+  </strong>
+
+  <span>
+    schools currently in the {{ app_settings.product_name }} network
+  </span>
+
+
+  <!-- Network map -->
+  <div
+    class="map-card"
+    aria-label="Illustrated {{ app_settings.product_name }} school network map"
+  >
+
+    <div class="map-grid"></div>
+
+    <span
+      class="map-pin pin-1"
+      aria-hidden="true"
+    >
+      —
+    </span>
+
+    <span
+      class="map-pin pin-2"
+      aria-hidden="true"
+    >
+      —
+    </span>
+
+    <span
+      class="map-pin pin-3"
+      aria-hidden="true"
+    >
+      —
+    </span>
+
+    <div class="map-label">
+
+      <span class="pulse-dot"></span>
+
+      {{ app_settings.product_name }} network
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     SCHOOL LIST
+======================================================== -->
+<div class="school-list clients-list">
+
+  {% for school in schools %}
+
+  <div class="school-row">
+
+    <span
+      class="school-icon"
+      aria-hidden="true"
+    >
+      —
+    </span>
+
+    <div>
+
+      <strong>
+        {{ school.name }}
+      </strong>
+
+      <small>
+        — {{ school.location }}
+      </small>
+
+    </div>
+
+    <em>
+      {{ school.students }}
+      <small> students</small>
+    </em>
+
+  </div>
+
+  {% else %}
+
+  <!-- Empty state -->
+
+  <div class="school-row">
+
+    <span
+      class="school-icon"
+      aria-hidden="true"
+    >
+      +
+    </span>
+
+    <div>
+
+      <strong>
+        Your school could be here.
+      </strong>
+
+      <small>
+        Be one of the schools using {{ app_settings.product_name }}.
+      </small>
+
+    </div>
+
+  </div>
+
+  {% endfor %}
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       WHY SCHOOLS JOIN
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container">
+
+  <div class="section-kicker">
+    Why schools choose {{ app_settings.product_name }}
+  </div>
+
+  <div class="values-grid">
+
+    <article>
+
+      <strong>01</strong>
+
+      <h3>
+        A practical CBT environment
+      </h3>
+
+      <p>
+        {{ app_settings.product_name }} gives schools a structured environment for
+        preparing and conducting computer-based examinations.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>02</strong>
+
+      <h3>
+        Designed for local environments
+      </h3>
+
+      <p>
+        Schools can operate their examination environment through
+        their local network without relying on continuous internet
+        connectivity.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>03</strong>
+
+      <h3>
+        Easier examination management
+      </h3>
+
+      <p>
+        Organize questions, students, examinations, and assessment
+        information through one school-focused platform.
+      </p>
+
+    </article>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       SCHOOL NETWORK STORY
+  ========================================================== -->
+
+  <section class="section container split-content">
+
+<div>
+
+  <div class="section-kicker">
+    Growing together
+  </div>
+
+  <h2>
+    Every school has
+    <br>
+    <span>different needs.</span>
+  </h2>
+
+</div>
+
+<div>
+
+  <p class="large-copy">
+    That's why {{ app_settings.product_name }} is designed to be practical enough for
+    real school environments while providing the structure needed
+    for computer-based assessment.
+  </p>
+
+  <p>
+    Our goal is not simply to put schools online. It is to give
+    schools useful technology that fits into the way they already
+    work and helps them move confidently toward better digital
+    assessment.
+  </p>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       JOIN NETWORK CTA
+  ========================================================== -->
+
+  <section class="download-section">
+
+<div class="container download-inner">
+
+  <div>
+
+    <div class="section-kicker light">
+      For schools
+    </div>
+
+    <h2>
+      Your school could
+      <br>
+      <span>be next.</span>
+    </h2>
+
+    <p>
+      Start exploring {{ app_settings.product_name }} and discover how your school can
+      introduce a practical computer-based examination workflow.
+    </p>
+
+    <a
+      class="button button-light"
+      href="{{ url_for('site_pages.download_page') }}"
+    >
+      — &nbsp; Download {{ app_settings.product_name }}
+    </a>
+
+  </div>
+
+
+  <div class="download-stat">
+
+    <strong>
+      {{ schools|length }}<sup>+</sup>
+    </strong>
+
+    <span>
+      schools in the network
+    </span>
+
+    <div class="stat-line">
+      <i></i>
+    </div>
+
+    <small>
+      Growing one school at a time.
+    </small>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       CONTACT CTA
+  ========================================================== -->
+
+  <section class="section container">
+
+<div class="intro-grid">
+
+  <h2>
+    Want your school
+    <br>
+    <span>on this list?</span>
+  </h2>
+
+  <div>
+
+    <p class="large-copy">
+      Get in touch with {{ app_settings.company_name }} to learn more about
+      {{ app_settings.product_name }} and how your school can get started.
+    </p>
+
+    <a
+      class="text-link"
+      href="{{ url_for('site_pages.contact') }}"
+    >
+      Contact us →
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+</main>
+
+{% endblock %}
+

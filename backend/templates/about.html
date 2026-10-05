@@ -1,0 +1,429 @@
+﻿{% extends "base.html" %}
+
+{% block title %}About {{ app_settings.company_name }} — The Team Behind {{ app_settings.product_name }}{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <!-- =========================================================
+       PAGE HERO
+  ========================================================== -->
+
+  <section class="page-hero container">
+
+<div class="section-kicker">
+  {{ app_settings.company_name }}
+</div>
+
+<h1>
+  Building technology
+  <br>
+  <span>that solves real problems.</span>
+</h1>
+
+<p>
+  {{ app_settings.company_name }} builds practical digital solutions designed
+  to make important work simpler, more reliable, and more accessible.
+</p>
+
+  </section>
+
+  <!-- =========================================================
+       WHO WE ARE
+  ========================================================== -->
+
+  <section class="section container split-content">
+
+<div>
+
+  <div class="section-kicker">
+    Who we are
+  </div>
+
+  <h2>
+    Technology should
+    <br>
+    make work easier.
+  </h2>
+
+</div>
+
+<div>
+
+  <p class="large-copy">
+    {{ app_settings.company_name }} is a technology company focused on building
+    software that addresses practical challenges faced by people,
+    businesses, and organizations.
+  </p>
+
+  <p>
+    We believe the best technology is not necessarily the technology
+    with the most features. It is technology that understands the
+    problem, removes unnecessary complexity, and helps people get
+    important work done better.
+  </p>
+
+  <p>
+    Our approach is simple: understand the people who will use a
+    product, understand the environment in which they work, and then
+    build technology that genuinely fits that environment.
+  </p>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       EXAMCENTER STORY
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container split-content">
+
+  <div>
+
+    <div class="section-kicker">
+      Our product
+    </div>
+
+    <h2>
+      Meet
+      <br>
+      <span>{{ app_settings.product_name }}.</span>
+    </h2>
+
+  </div>
+
+  <div>
+
+    <p class="large-copy">
+      {{ app_settings.product_name }} is an offline-first computer-based testing platform
+      developed by {{ app_settings.company_name }} for schools that want a
+      dependable way to manage computer-based examinations.
+    </p>
+
+    <p>
+      We built {{ app_settings.product_name }} around a simple observation: schools need
+      technology that works in the environment they actually operate
+      in — not technology that assumes perfect internet connectivity,
+      unlimited resources, or a dedicated technical team.
+    </p>
+
+    <p>
+      {{ app_settings.product_name }} brings examination management, question management,
+      student assessment, and results into a single school-focused
+      environment.
+    </p>
+
+    <a class="text-link"
+       href="{{ url_for('site_pages.download_page') }}">
+      Explore {{ app_settings.product_name }} →
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       WHY EXAMCENTER
+  ========================================================== -->
+
+  <section class="section container split-content">
+
+<div>
+
+  <div class="section-kicker">
+    Why {{ app_settings.product_name }} exists
+  </div>
+
+  <h2>
+    Built around the
+    <br>
+    realities of schools.
+  </h2>
+
+</div>
+
+<div>
+
+  <p class="large-copy">
+    Running a computer-based examination involves much more than
+    putting questions on a screen.
+  </p>
+
+  <p>
+    Schools have to prepare questions, organize students, configure
+    examinations, provide a reliable environment for candidates,
+    manage the examination process, and work with the results.
+  </p>
+
+  <p>
+    {{ app_settings.product_name }} is designed to bring these responsibilities into a
+    structured workflow while keeping the experience straightforward
+    for the people managing the examination.
+  </p>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       OUR VALUES
+  ========================================================== -->
+
+  <section class="section tinted-section">
+
+<div class="container">
+
+  <div class="section-kicker">
+    What guides us
+  </div>
+
+  <div class="values-grid">
+
+    <article>
+
+      <strong>01</strong>
+
+      <h3>
+        Clarity over complexity
+      </h3>
+
+      <p>
+        Software should be understandable. We aim to create
+        interfaces and workflows that help users know what to do
+        without unnecessary confusion.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>02</strong>
+
+      <h3>
+        Reliability matters
+      </h3>
+
+      <p>
+        When technology is being used for important work, people
+        should be able to depend on it. We design our products with
+        reliability and practical use in mind.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>03</strong>
+
+      <h3>
+        Solve the real problem
+      </h3>
+
+      <p>
+        We start with the problem before thinking about the
+        technology. Every feature should have a reason to exist.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>04</strong>
+
+      <h3>
+        Build for the environment
+      </h3>
+
+      <p>
+        Great software should fit the conditions in which people
+        actually work. That means considering infrastructure,
+        connectivity, resources, and everyday workflows.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>05</strong>
+
+      <h3>
+        Keep improving
+      </h3>
+
+      <p>
+        Products should evolve with the people using them. We listen
+        to feedback, learn from real usage, and continue improving
+        our solutions.
+      </p>
+
+    </article>
+
+
+    <article>
+
+      <strong>06</strong>
+
+      <h3>
+        Technology for people
+      </h3>
+
+      <p>
+        Behind every system are real people. Our goal is to use
+        technology to give them more control, more clarity, and more
+        time for the work that matters.
+      </p>
+
+    </article>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       OUR VISION
+  ========================================================== -->
+
+  <section class="section container split-content">
+
+<div>
+
+  <div class="section-kicker">
+    Our vision
+  </div>
+
+  <h2>
+    Make useful
+    <br>
+    technology accessible.
+  </h2>
+
+</div>
+
+<div>
+
+  <p class="large-copy">
+    We want to build software that organizations can actually use,
+    understand, and depend on.
+  </p>
+
+  <p>
+    For schools, that means making modern assessment technology
+    easier to adopt. For other organizations, it means continuing to
+    identify areas where thoughtful software can remove friction and
+    improve everyday work.
+  </p>
+
+  <p>
+    {{ app_settings.product_name }} is one step in that journey.
+  </p>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       EXAMCENTER CTA
+  ========================================================== -->
+
+  <section class="download-section">
+
+<div class="container download-inner">
+
+  <div>
+
+    <div class="section-kicker light">
+      Built by {{ app_settings.company_name }}
+    </div>
+
+    <h2>
+      Ready to experience
+      <br>
+      <span>{{ app_settings.product_name }}?</span>
+    </h2>
+
+    <p>
+      Download {{ app_settings.product_name }} for Windows and discover a simpler way
+      to manage computer-based examinations.
+    </p>
+
+    <a class="button button-light"
+       href="{{ url_for('site_pages.download_page') }}">
+      → &nbsp; Download {{ app_settings.product_name }}
+    </a>
+
+  </div>
+
+  <div class="download-stat">
+
+    <strong>
+      {{ '{:,}'.format(downloads) }}<sup>+</sup>
+    </strong>
+
+    <span>
+      downloads and counting
+    </span>
+
+    <div class="stat-line">
+      <i></i>
+    </div>
+
+    <small>
+      Join schools moving toward simpler computer-based assessment.
+    </small>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- =========================================================
+       CONTACT CTA
+  ========================================================== -->
+
+  <section class="section container">
+
+<div class="intro-grid">
+
+  <h2>
+    Have a question
+    <br>
+    <span>about {{ app_settings.product_name }}?</span>
+  </h2>
+
+  <div>
+
+    <p class="large-copy">
+      Whether you are a school interested in getting started,
+      an existing user who needs assistance, or simply want to
+      learn more about what we are building, we would love to
+      hear from you.
+    </p>
+
+    <a class="text-link"
+       href="{{ url_for('site_pages.contact') }}">
+      Contact {{ app_settings.company_name }} →
+    </a>
+
+  </div>
+
+</div>
+
+  </section>
+
+</main>
+
+{% endblock %}
+

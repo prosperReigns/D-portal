@@ -1,0 +1,111 @@
+﻿<header class="nav-wrap">
+
+  <nav
+    class="nav container"
+    aria-label="Main navigation"
+  >
+
+    <!-- =======================================================
+         EXAMCENTER BRAND
+    ======================================================== -->
+
+    <a
+      href="{{ url_for('home.home') }}"
+      class="brand"
+      aria-label="{{ app_settings.product_name }} home"
+    >
+
+      <span class="brand-mark">
+        {{ app_settings.product_initial }}
+      </span>
+
+      <span>
+        {{ app_settings.product_name_upper }}
+      </span>
+
+    </a>
+
+
+    <!-- =======================================================
+         NAVIGATION LINKS
+    ======================================================== -->
+
+    <div
+      class="nav-links"
+      id="nav-links"
+    >
+
+      <a href="{{ url_for('home.home') }}">
+        Home
+      </a>
+
+
+      <a href="{{ url_for('home.home') }}#why">
+        Features
+      </a>
+
+
+      <a href="{{ url_for('home.home') }}#how-it-works">
+        How it works
+      </a>
+
+
+      <a href="{{ url_for('site_pages.clients') }}">
+        Schools
+      </a>
+
+
+      <a href="{{ url_for('site_pages.testimonials') }}">
+        Testimonials
+      </a>
+
+
+      <a href="{{ url_for('site_pages.about') }}">
+        About
+      </a>
+
+
+      <a href="{{ url_for('site_pages.contact') }}">
+        Contact
+      </a>
+
+
+      <!-- Primary CTA -->
+
+      <a
+        class="nav-download"
+        href="{{ url_for('site_pages.download_page') }}"
+      >
+        Download {{ app_settings.product_name }}
+
+        <span aria-hidden="true">
+          â†’
+        </span>
+
+      </a>
+
+    </div>
+
+
+    <!-- =======================================================
+         MOBILE MENU
+    ======================================================== -->
+
+    <button
+      class="menu-button"
+      id="menu-button"
+      type="button"
+      aria-label="Toggle navigation"
+      aria-controls="nav-links"
+      aria-expanded="false"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+  </nav>
+
+</header>

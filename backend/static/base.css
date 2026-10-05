@@ -1,0 +1,20 @@
+/* Shared forms, footer, and notifications. */
+
+@media (max-width: 900px) {
+  .container { width: min(100% - 48px, 620px); }
+  .nav-links { display: none; position: absolute; top: 75px; left: 24px; right: 24px; background: var(--white); padding: 22px; border: 1px solid var(--line); border-radius: var(--radius-md); flex-direction: column; align-items: flex-start; gap: 20px; box-shadow: var(--shadow-card); }
+  .nav-links.open { display: flex; }
+  .menu-button { display: block; }
+  .footer-top { flex-wrap: wrap; gap: 25px; }
+  .footer-top p { margin: 0; }
+  .footer-links { width: 100%; margin-left: 0; }
+  .footer-bottom { gap: 20px; flex-direction: column; }
+}
+
+@media (max-width: 520px) {
+  .container { width: calc(100% - 36px); }
+  footer { padding-inline: 18px; }
+  .footer-bottom { padding-bottom: 10px; }
+  .footer-bottom span:last-child { display: none; }
+}
+

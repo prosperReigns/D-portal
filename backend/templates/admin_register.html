@@ -1,0 +1,133 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Register Administrator — {{ app_settings.product_name }}{% endblock %}
+
+{% block body_class %}admin-body{% endblock %}
+
+{% block content %}
+
+<main class="auth-page">
+
+  <section
+    class="auth-card"
+    aria-labelledby="register-title"
+  >
+
+<!-- =======================================================
+     CONTEXT
+======================================================== -->
+<div class="section-kicker">
+  {{ app_settings.product_name }} administration
+</div>
+
+
+<h1 id="register-title">
+  Create the admin account.
+</h1>
+
+
+<p class="auth-intro">
+  Set up the administrator account that will manage the {{ app_settings.product_name }}
+  website, installer, downloads, and public school information.
+</p>
+
+
+<!-- =======================================================
+     REGISTRATION FORM
+======================================================== -->
+<form
+  class="auth-form"
+  method="post"
+>
+
+  <input
+    type="hidden"
+    name="csrf_token"
+    value="{{ csrf_token() }}"
+  >
+
+  <label>
+    Username
+
+    <input
+      name="username"
+      autocomplete="username"
+      minlength="3"
+      maxlength="80"
+      placeholder="Choose a username"
+      required
+      autofocus
+    >
+  </label>
+
+
+  <label>
+    Password
+
+    <input
+      type="password"
+      name="password"
+      autocomplete="new-password"
+      minlength="12"
+      placeholder="Create a secure password"
+      required
+    >
+
+    <small>
+      Use at least 12 characters.
+    </small>
+  </label>
+
+
+  <label>
+    Confirm password
+
+    <input
+      type="password"
+      name="password_confirmation"
+      autocomplete="new-password"
+      minlength="12"
+      placeholder="Enter your password again"
+      required
+    >
+  </label>
+
+
+  <button
+    class="button button-primary"
+    type="submit"
+  >
+    Create account
+    <span aria-hidden="true">→</span>
+  </button>
+
+</form>
+
+
+<!-- =======================================================
+     LOGIN
+======================================================== -->
+<p class="auth-switch">
+  Already registered?
+
+  <a href="{{ url_for('admin_auth.login') }}">
+    Sign in
+  </a>
+</p>
+
+
+<!-- =======================================================
+     SECURITY NOTE
+======================================================== -->
+<p class="auth-note">
+  Administrator registration is available only during the initial
+  setup of the website. Once an administrator account exists,
+  registration is automatically closed.
+</p>
+
+  </section>
+
+</main>
+
+{% endblock %}
+
