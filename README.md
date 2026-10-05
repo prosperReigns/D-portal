@@ -1,71 +1,87 @@
-# Kings CBT Website
+# Examcenter Official Website
 
-A full-stack marketing and download site for the Kings CBT Windows application, rendered server-side with Flask templates.
+The official public website for **Examcenter**, built with Flask and server-rendered templates.
+
+The website is intentionally separate from the examination application. Its job is to help people **discover, download, learn, license, and get support for Examcenter**.
+
+## Website responsibilities
+
+- **Product information:** explain what Examcenter is, who it serves, the problems it solves, and its offline-first architecture.
+- **Downloads:** provide the official Windows installer and track successful downloads.
+- **Documentation:** installation, setup, examination workflow, results, licensing and troubleshooting guidance.
+- **Pricing and licensing:** explain the Free/Core examination experience and Pro supporting services, then hand licensing actions to the configured license portal.
+- **Support:** provide troubleshooting guidance and a contact channel for installation, usage, technical and licensing questions.
+- **Company/product presence:** explain the product, KTS, partners, school/community stories and ways to contact the team.
+
+## Important boundary
+
+The website **does not conduct examinations** and should not become a runtime dependency for exam day.
+
+The intended architecture is:
+
+`Examcenter Website` → information, downloads, documentation, pricing, support, licensing entry point
+
+`License Server` → customers, payments, licenses, activation and entitlement validation
+
+`Local Examcenter Application` → actual examination process, operating offline
+
+This separation is deliberate. A school should be able to conduct an examination in its local Examcenter environment without needing the public website to be online.
+
+## Free/Core vs Pro
+
+The public website communicates a simple licensing principle:
+
+> **The features necessary to conduct an examination remain Core/free. Pro is for supporting capabilities around the examination process.**
+
+The configured pricing page currently supports:
+
+- Core — Free
+- 6 Months Pro — ₦150,000
+- 1 Year Pro — ₦250,000
+- 2 Years Pro — ₦450,000
+
+Prices are environment-configurable. The website is not the license authority; `LICENSE_PORTAL_URL` can point Pro customers to the separate licensing service.
 
 ## Stack
 
-- **Frontend:** Flask/Jinja templates with server-rendered HTML and CSS
-- **Backend:** Flask + Flask-SQLAlchemy
-- **Database:** PostgreSQL (Docker Compose), with SQLite fallback for local preview
+- Frontend: Flask/Jinja templates with server-rendered HTML/CSS
+- Backend: Flask + Flask-SQLAlchemy
+- Database: PostgreSQL in production, SQLite fallback for local preview
+- Installer: configurable Windows `.exe` upload/download
 
-## Run the website
+## Run locally
 
 ```powershell
 cd backend
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+.\\.venv\\Scripts\\Activate.ps1
 pip install -r requirements.txt
 Copy-Item .env.example .env
 python app.py
 ```
 
-The website runs at `http://localhost:5000` by default. Update `backend/.env` for the database URL, host, port, public contact details, video IDs, installer filename, and upload limits. Add the real Windows installer at `backend/uploads/<INSTALLER_FILENAME>`. The download button records a download event before serving the file.
+The site runs at `http://localhost:5000` by default.
 
-Public school listings are runtime content. Set `SCHOOLS_JSON` to a JSON list or point `SCHOOLS_FILE` at a JSON file:
+## Main public routes
 
-```json
-[{"name":"Example Secondary School","location":"City, Country","students":"1,200+"}]
-```
+- `/` — product overview
+- `/download-app` — official Windows download
+- `/guides` — documentation and getting started
+- `/pricing` — Core/Pro plans
+- `/license` — licensing portal hand-off
+- `/support` — support hub
+- `/about` — company and product story
+- `/clients` — public school/community directory when configured
+- `/partners` — partner information
+- `/testimonials` — community stories
+- `/contact` — contact/support form
 
-## Private installer upload
+## Installer administration
 
-The owner-only upload page is available at `/admin/installer`. The `/admin/register` route creates the initial administrator account only while `ALLOW_ADMIN_REGISTRATION=true`; after the account exists, registration closes and admins sign in with the stored password hash.
+The owner-only installer upload page is available at `/admin/installer`. Registration is controlled by `ALLOW_ADMIN_REGISTRATION`.
 
-Do not commit a real `.env` file or credentials. In production, serve the site over HTTPS, set `APP_ENV=production`, set a long random `SECRET_KEY`, set `DATABASE_URL`, and enable secure cookies with `SESSION_COOKIE_SECURE=true`.
+Do not commit a real `.env` file or credentials. In production use HTTPS, a strong `SECRET_KEY`, a production database, secure cookies and restricted access to the installer administration area.
 
-The upload accepts only the configured installer filename/extension and replaces the public installer atomically. Consider restricting `/admin/installer` by VPN, IP allowlist, or provider-level access controls.
+## Deployment boundary
 
-## PostgreSQL
-
-Copy `backend/.env.example` to `backend/.env`, set `POSTGRES_PASSWORD`, then start PostgreSQL with `docker compose up -d db`. The same file provides `DATABASE_URL` for Flask. The database stores download events, contact messages, and admin users.
-
-Initialize tables explicitly when `AUTO_CREATE_DATABASE=false`:
-
-```bash
-cd backend
-flask --app app init-db
-```
-
-## Production
-
-Use a WSGI server instead of Flask's development server:
-
-```bash
-cd backend
-APP_ENV=production gunicorn "app:app"
-```
-
-For production, set `AUTO_CREATE_DATABASE=false` after your database tables have been created, set `TRUST_PROXY_HEADERS=true` only behind a trusted reverse proxy, and enable `HSTS_ENABLED=true` only when HTTPS is fully configured. The app will fail fast in production if `SECRET_KEY`, `DATABASE_URL`, secure cookies, or debug settings are unsafe.
-
-Docker Compose can run both the web app and PostgreSQL:
-
-```bash
-Copy-Item backend/.env.example backend/.env
-docker compose up --build
-```
-
-Before the first public deployment, temporarily set `ALLOW_ADMIN_REGISTRATION=true`, create the admin account at `/admin/register`, then set it back to `false` and redeploy.
-
-## Video content
-
-The two guide cards are ready for the setup and usage videos. Replace the card interaction with the final YouTube/Vimeo URLs, or wire in hosted MP4 files when the recordings are available.
+The website may be deployed publicly (for example on a cloud platform), while the Examcenter desktop application remains the offline examination environment. The license server is a separate service and should remain the authority for license validation and entitlement state.
