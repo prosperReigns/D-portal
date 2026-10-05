@@ -59,6 +59,7 @@ def register_template_globals(app):
                 "product_name_upper": app.config["PRODUCT_NAME"].upper(),
                 "product_initial": app.config["PRODUCT_NAME"][:1].upper(),
                 "allow_admin_registration": app.config["ALLOW_ADMIN_REGISTRATION"],
+                "license_portal_url": app.config["LICENSE_PORTAL_URL"],
             },
             "setup_video_id": app.config["SETUP_VIDEO_ID"],
             "usage_video_id": app.config["USAGE_VIDEO_ID"],
