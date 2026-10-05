@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Guides & Documentation — {{ app_settings.product_name }}{% endblock %}
+{% block meta_description %}Official Examcenter installation, setup, examination workflow and user guidance.{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero container">
+    <div class="section-kicker">Documentation</div>
+    <h1>Learn how to <span>use Examcenter.</span></h1>
+    <p>The official website is the knowledge hub for installing, configuring and using Examcenter. The examination itself runs in the local Examcenter application.</p>
+  </section>
+
+  <section class="section container">
+    <div class="values-grid">
+      <article><strong>01</strong><h3>Installation</h3><p>Download the Windows application, install it, prepare the local environment and understand the first-run setup.</p><a class="text-link" href="{{ url_for('site_pages.download_page') }}">Installation & download →</a></article>
+      <article><strong>02</strong><h3>Administrator setup</h3><p>Learn the recommended setup flow for academic structure, subjects, classes, administrators and teachers.</p><a class="text-link" href="{{ url_for('site_pages.support') }}">Get setup help →</a></article>
+      <article><strong>03</strong><h3>Creating examinations</h3><p>Understand question management, tests, scheduling, student access and the essential examination workflow.</p><a class="text-link" href="{{ url_for('home.home') }}#why">Explore features →</a></article>
+      <article><strong>04</strong><h3>Results</h3><p>Learn how results fit into the examination workflow and how supporting Pro capabilities can extend what you do with them.</p><a class="text-link" href="{{ url_for('site_pages.pricing') }}">See Free & Pro →</a></article>
+      <article><strong>05</strong><h3>Licensing</h3><p>Understand the difference between the free Core examination process and Pro supporting services.</p><a class="text-link" href="{{ url_for('site_pages.pricing') }}">Read licensing →</a></article>
+      <article><strong>06</strong><h3>Troubleshooting</h3><p>Find help for installation, configuration, networking, downloads, licensing and common operational issues.</p><a class="text-link" href="{{ url_for('site_pages.support') }}">Open support →</a></article>
+    </div>
+  </section>
+
+  <section class="section tinted-section">
+    <div class="container split-content">
+      <div><div class="section-kicker">Offline-first</div><h2>The website helps you prepare.<br><span>Examcenter runs the exam.</span></h2></div>
+      <div><p class="large-copy">Internet access is not required to conduct an exam in the local Examcenter environment.</p><p>The website is intentionally separate: it provides information, downloads, documentation, support and licensing services without becoming a dependency during an examination.</p></div>
+    </div>
+  </section>
+</main>
+{% endblock %}
