@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Pricing & Licensing — {{ app_settings.product_name }}{% endblock %}
+{% block meta_description %}Understand what is included in Examcenter Core and Pro licensing, and choose the right plan for your organization.{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero container">
+    <div class="section-kicker">Pricing & licensing</div>
+    <h1>Keep the exam process <span>free.</span><br>Pay for supporting tools.</h1>
+    <p>Examcenter's core examination workflow remains available for conducting exams. Pro adds supporting capabilities for organizations that need more than the essential exam process.</p>
+  </section>
+
+  <section class="section container">
+    <div class="feature-grid">
+      {% for plan in plans %}
+      <article class="feature{% if plan.featured %} featured{% endif %}">
+        {% if plan.featured %}<span class="section-kicker">Recommended</span>{% endif %}
+        <h3>{{ plan.name }}</h3>
+        <p class="large-copy">{{ plan.price }}</p>
+        <strong>{{ plan.term }}</strong>
+        <p>{{ plan.description }}</p>
+        <ul>
+          {% for feature in plan.features %}<li>{{ feature }}</li>{% endfor %}
+        </ul>
+        {% if plan.id == "core" %}
+          <a class="button button-primary" href="{{ url_for('site_pages.download_page') }}">Download Examcenter</a>
+        {% elif license_portal_url %}
+          <a class="button button-primary" href="{{ license_portal_url }}">Get Pro license →</a>
+        {% else %}
+          <a class="button button-primary" href="{{ url_for('site_pages.contact') }}">Talk to us →</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section tinted-section">
+    <div class="container split-content">
+      <div>
+        <div class="section-kicker">Our licensing principle</div>
+        <h2>Licensing should never <span>stop an exam.</span></h2>
+      </div>
+      <div>
+        <p class="large-copy">The features necessary to actually prepare and conduct an examination belong to the Core experience.</p>
+        <p>Pro is for supporting capabilities such as extended backup, synchronization, remote access, portals, multi-campus workflows and other services that add value around the examination process.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="download-section">
+    <div class="container download-inner">
+      <div>
+        <div class="section-kicker light">Ready to begin?</div>
+        <h2>Download, learn,<br><span>then choose Pro.</span></h2>
+        <p>Start with the core application and use the guides to understand how Examcenter fits your organization.</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="{{ url_for('site_pages.download_page') }}">Download Examcenter</a>
+          <a class="text-link" href="{{ url_for('site_pages.guides') }}">Read the guides →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
