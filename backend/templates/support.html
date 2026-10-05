@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Support — {{ app_settings.product_name }}{% endblock %}
+{% block meta_description %}Get Examcenter installation, setup, licensing and technical support.{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero container">
+    <div class="section-kicker">Support</div>
+    <h1>When you need help, <span>start here.</span></h1>
+    <p>Use the official website to find guidance or contact {{ app_settings.company_name }}. Examcenter is designed to conduct examinations offline, while support and licensing services are handled outside the exam environment.</p>
+  </section>
+
+  <section class="section container">
+    <div class="values-grid">
+      <article><strong>01</strong><h3>Installation & setup</h3><p>Help with Windows installation, first-run configuration, local network preparation and getting a school ready.</p><a class="text-link" href="{{ url_for('site_pages.download_page') }}">Installation page →</a></article>
+      <article><strong>02</strong><h3>Using Examcenter</h3><p>Guidance for administrators and teachers on questions, tests, schedules, students and results.</p><a class="text-link" href="{{ url_for('site_pages.guides') }}">Open documentation →</a></article>
+      <article><strong>03</strong><h3>Licensing</h3><p>Understand Core versus Pro and get directed to the licensing service when a Pro entitlement is needed.</p><a class="text-link" href="{{ url_for('site_pages.pricing') }}">Pricing & licensing →</a></article>
+      <article><strong>04</strong><h3>Technical support</h3><p>Tell us what is happening, what you were trying to do, and any useful error message or environment details.</p><a class="text-link" href="{{ url_for('site_pages.contact') }}">Contact support →</a></article>
+    </div>
+  </section>
+
+  <section class="section tinted-section">
+    <div class="container split-content">
+      <div><div class="section-kicker">Before contacting us</div><h2>Give us enough context to <span>help quickly.</span></h2></div>
+      <div><ul><li>What were you trying to do?</li><li>Which Examcenter version are you using?</li><li>Is the issue on the administrator or student computer?</li><li>What error message do you see?</li><li>Is the local network involved?</li></ul></div>
+    </div>
+  </section>
+
+  <section class="download-section">
+    <div class="container download-inner"><div><div class="section-kicker light">Need direct help?</div><h2>Talk to the <span>Examcenter team.</span></h2><p>Send your question and our team will help you find the right next step.</p><a class="button button-light" href="{{ url_for('site_pages.contact') }}">Contact support →</a></div></div>
+  </section>
+</main>
+{% endblock %}
