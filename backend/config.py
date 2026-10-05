@@ -87,6 +87,54 @@ class Config:
     SCHOOLS_FILE = env_path("SCHOOLS_FILE", "") if env("SCHOOLS_FILE") else ""
     SCHOOLS = load_schools(env("SCHOOLS_JSON"), SCHOOLS_FILE)
 
+    LICENSE_PORTAL_URL = env("LICENSE_PORTAL_URL", "")
+    PRICING_PLANS = (
+        {
+            "id": "core",
+            "name": "Core",
+            "price": "Free",
+            "term": "Core examination features",
+            "description": "Everything required to prepare and conduct an examination.",
+            "features": [
+                "Academic and examination setup",
+                "Subjects, classes and users",
+                "Question and test management",
+                "Exam scheduling and delivery",
+                "Student test-taking",
+                "Results and essential examination workflow",
+                "Offline examination operation",
+            ],
+            "featured": False,
+        },
+        {
+            "id": "six_months",
+            "name": "6 Months",
+            "price": env("PRICE_SIX_MONTHS", "₦150,000"),
+            "term": "6-month Pro license",
+            "description": "Pro supporting tools for schools that need more than the core exam workflow.",
+            "features": ["Everything in Core", "Pro supporting tools", "License and product support", "One licensing term"],
+            "featured": False,
+        },
+        {
+            "id": "one_year",
+            "name": "1 Year",
+            "price": env("PRICE_ONE_YEAR", "₦250,000"),
+            "term": "12-month Pro license",
+            "description": "The standard Pro plan for schools running Examcenter throughout the academic year.",
+            "features": ["Everything in Core", "Pro supporting tools", "License and product support", "Annual school operations"],
+            "featured": True,
+        },
+        {
+            "id": "two_years",
+            "name": "2 Years",
+            "price": env("PRICE_TWO_YEARS", "₦450,000"),
+            "term": "24-month Pro license",
+            "description": "Longer-term Pro access for schools that want continuity and predictable licensing.",
+            "features": ["Everything in Core", "Pro supporting tools", "License and product support", "Two-year licensing term"],
+            "featured": False,
+        },
+    )
+
     SETUP_VIDEO_ID = env("SETUP_VIDEO_ID")
     USAGE_VIDEO_ID = env("USAGE_VIDEO_ID")
     YOUTUBE_EMBED_BASE_URL = env("YOUTUBE_EMBED_BASE_URL", "https://www.youtube.com/embed")
