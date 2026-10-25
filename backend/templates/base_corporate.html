@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a56">
+  <title>{% block title %}KTS — Software built around real work{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Kingstech Software builds practical digital products for education, assessment and organizational workflows.{% endblock %}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='corporate.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="corporate-body">
+  <header class="corporate-nav-wrap">
+    <nav class="corporate-nav container" aria-label="Main navigation">
+      <a class="corporate-brand" href="{{ url_for('home.home') }}" aria-label="KTS home">
+        <span class="corporate-brand-mark">K</span>
+        <span><strong>KTS</strong><small>Kingstech Software</small></span>
+      </a>
+      <div class="corporate-nav-links">
+        <a href="{{ url_for('home.home') }}">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about-kts">About KTS</a>
+        <a href="{{ url_for('site_pages.contact') }}">Contact</a>
+        <a class="button button-primary" href="{{ url_for('home.examcenter_product') }}">Explore Examcenter <span aria-hidden="true">→</span></a>
+      </div>
+    </nav>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}<div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}" role="status">{{ message }}</div>{% endfor %}</div>{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  <footer class="corporate-footer">
+    <div class="container corporate-footer-inner">
+      <div>
+        <a class="corporate-brand footer-brand" href="{{ url_for('home.home') }}"><span class="corporate-brand-mark">K</span><span><strong>KTS</strong><small>Kingstech Software</small></span></a>
+        <p>Practical software products for real-world workflows.</p>
+      </div>
+      <div class="corporate-footer-links">
+        <a href="#products">Products</a>
+        <a href="#about-kts">About</a>
+        <a href="{{ url_for('site_pages.contact') }}">Contact</a>
+        <a href="mailto:{{ app_settings.contact_email }}">Email KTS</a>
+      </div>
+      <small>© {{ app_settings.copyright_year }} Kingstech Software. All rights reserved.</small>
+    </div>
+  </footer>
+</body>
+</html>
