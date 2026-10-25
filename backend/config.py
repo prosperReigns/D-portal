@@ -79,7 +79,7 @@ class Config:
     MAX_CONTENT_LENGTH = UPLOAD_MAX_BYTES
 
     PRODUCT_NAME = env("PRODUCT_NAME", "Examcenter")
-    COMPANY_NAME = env("COMPANY_NAME", "Kings Tech Softwares")
+    COMPANY_NAME = env("COMPANY_NAME", "Kingstech Software")
     CONTACT_EMAIL = env("CONTACT_EMAIL", "hello@kingstechsoftware.com")
     SUPPORT_HOURS = env("SUPPORT_HOURS", "Mon-Fri, 8am-5pm WAT")
     SERVICE_NAME = env("SERVICE_NAME", f"{PRODUCT_NAME} API")

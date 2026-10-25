@@ -1,87 +1,72 @@
-# Examcenter Official Website
+# KTS & Examcenter Public Website
 
-The official public website for **Examcenter**, built with Flask and server-rendered templates.
+The public website is the company and product information hub for **KTS (Kingstech Software)** and its product **Examcenter**. It is built with Flask and server-rendered Jinja templates.
 
-The website is intentionally separate from the examination application. Its job is to help people **discover, download, learn, license, and get support for Examcenter**.
+## Brand and route structure
 
-## Website responsibilities
+- `/` — KTS corporate homepage: company positioning, product family and company contact.
+- `/products/examcenter` — Examcenter product homepage and feature overview.
+- `/download-app` — official Windows installer page.
+- `/guides` — product documentation and getting started.
+- `/pricing` — Core/Pro plans.
+- `/license` — hand-off to the configured licensing portal.
+- `/support` — troubleshooting and support hub.
+- `/about`, `/clients`, `/partners`, `/testimonials`, `/contact` — product/company information and contact.
+- `/admin/installer` — owner-only installer upload page.
 
-- **Product information:** explain what Examcenter is, who it serves, the problems it solves, and its offline-first architecture.
-- **Downloads:** provide the official Windows installer and track successful downloads.
-- **Documentation:** installation, setup, examination workflow, results, licensing and troubleshooting guidance.
-- **Pricing and licensing:** explain the Free/Core examination experience and Pro supporting services, then hand licensing actions to the configured license portal.
-- **Support:** provide troubleshooting guidance and a contact channel for installation, usage, technical and licensing questions.
-- **Company/product presence:** explain the product, KTS, partners, school/community stories and ways to contact the team.
+The intended public domain structure is one KTS domain, with Examcenter presented as a product under `/products/examcenter`. If a dedicated product subdomain is used later, it can point to the same product experience without changing the product's role in the KTS brand family. The licensing service remains a separate service and hostname (for example, `license.kingstechsoftwares.com`).
 
-## Important boundary
+## Responsibilities and boundaries
 
-The website **does not conduct examinations** and should not become a runtime dependency for exam day.
+`KTS website` → company identity, product discovery and future product family.
 
-The intended architecture is:
+`Examcenter website pages` → product information, downloads, documentation, pricing, support and licensing hand-off.
 
-`Examcenter Website` → information, downloads, documentation, pricing, support, licensing entry point
+`License server` → customers, payments, licenses, activation and entitlement validation. It remains the authority for licensing; the public website is not.
 
-`License Server` → customers, payments, licenses, activation and entitlement validation
+`Local Examcenter application` → actual examination process, including local/offline operation.
 
-`Local Examcenter Application` → actual examination process, operating offline
+The website must not conduct examinations or become a runtime dependency on exam day. A school must be able to conduct examinations in its local Examcenter environment even when the public website is unavailable.
 
-This separation is deliberate. A school should be able to conduct an examination in its local Examcenter environment without needing the public website to be online.
+## Core and Pro
 
-## Free/Core vs Pro
+The public website communicates this licensing principle: **everything necessary to conduct an examination remains Core/free; Pro covers supporting capabilities around the examination process.**
 
-The public website communicates a simple licensing principle:
-
-> **The features necessary to conduct an examination remain Core/free. Pro is for supporting capabilities around the examination process.**
-
-The configured pricing page currently supports:
+Current configurable plans:
 
 - Core — Free
 - 6 Months Pro — ₦150,000
 - 1 Year Pro — ₦250,000
 - 2 Years Pro — ₦450,000
 
-Prices are environment-configurable. The website is not the license authority; `LICENSE_PORTAL_URL` can point Pro customers to the separate licensing service.
+Prices are environment-configurable. `LICENSE_PORTAL_URL` points to the separate licensing service.
 
-## Stack
+## Architecture
 
-- Frontend: Flask/Jinja templates with server-rendered HTML/CSS
-- Backend: Flask + Flask-SQLAlchemy
-- Database: PostgreSQL in production, SQLite fallback for local preview
-- Installer: configurable Windows `.exe` upload/download
+- Flask application factory and route blueprints
+- Jinja templates, shared product layout and a separate corporate KTS layout
+- Shared base styles plus `corporate.css` for the corporate homepage
+- Flask-SQLAlchemy
+- PostgreSQL in production; SQLite fallback for local preview
+- Configurable Windows `.exe` upload/download
+
+The company homepage is rendered by `backend/templates/index.html`. The existing Examcenter product landing page is preserved at `backend/templates/examcenter.html`, served by `/products/examcenter`. Product pages use the shared product layout and navigation; the KTS homepage uses `base_corporate.html`.
 
 ## Run locally
 
 ```powershell
 cd backend
 python -m venv .venv
-.\\.venv\\Scripts\\Activate.ps1
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 Copy-Item .env.example .env
 python app.py
 ```
 
-The site runs at `http://localhost:5000` by default.
+Open `http://localhost:5000`.
 
-## Main public routes
+## Installer administration and production
 
-- `/` — product overview
-- `/download-app` — official Windows download
-- `/guides` — documentation and getting started
-- `/pricing` — Core/Pro plans
-- `/license` — licensing portal hand-off
-- `/support` — support hub
-- `/about` — company and product story
-- `/clients` — public school/community directory when configured
-- `/partners` — partner information
-- `/testimonials` — community stories
-- `/contact` — contact/support form
+Registration is controlled by `ALLOW_ADMIN_REGISTRATION`. Do not commit a real `.env` file or credentials. In production use HTTPS, a strong `SECRET_KEY`, a production database, secure cookies and restricted access to installer administration.
 
-## Installer administration
-
-The owner-only installer upload page is available at `/admin/installer`. Registration is controlled by `ALLOW_ADMIN_REGISTRATION`.
-
-Do not commit a real `.env` file or credentials. In production use HTTPS, a strong `SECRET_KEY`, a production database, secure cookies and restricted access to the installer administration area.
-
-## Deployment boundary
-
-The website may be deployed publicly (for example on a cloud platform), while the Examcenter desktop application remains the offline examination environment. The license server is a separate service and should remain the authority for license validation and entitlement state.
+The website may be deployed publicly while the Examcenter desktop application remains the offline examination environment. The license server is a separate service and should remain the authority for license validation and entitlement state.

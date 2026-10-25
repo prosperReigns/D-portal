@@ -1,24 +1,20 @@
 <header class="nav-wrap">
   <nav class="nav container" aria-label="Main navigation">
-    <a href="{{ url_for('home.home') }}" class="brand" aria-label="{{ app_settings.product_name }} home">
+    <a href="{{ url_for('home.examcenter_product') }}" class="brand" aria-label="{{ app_settings.product_name }} product home">
       <span class="brand-mark">{{ app_settings.product_initial }}</span>
       <span>{{ app_settings.product_name_upper }}</span>
     </a>
-
     <div class="nav-links" id="nav-links">
-      <a href="{{ url_for('home.home') }}">Home</a>
-      <a href="{{ url_for('home.home') }}#why">Features</a>
+      <a href="{{ url_for('home.examcenter_product') }}">Product home</a>
+      <a href="{{ url_for('home.examcenter_product') }}#why">Features</a>
       <a href="{{ url_for('site_pages.guides') }}">Guides</a>
       <a href="{{ url_for('site_pages.pricing') }}">Pricing</a>
       <a href="{{ url_for('site_pages.download_page') }}">Download</a>
       <a href="{{ url_for('site_pages.support') }}">Support</a>
       <a href="{{ url_for('site_pages.about') }}">About</a>
+      <a href="{{ url_for('home.home') }}">KTS company</a>
       <a class="nav-download" href="{{ url_for('site_pages.pricing') }}">Get started <span aria-hidden="true">→</span></a>
     </div>
-
-    <button class="menu-button" id="menu-button" type="button"
-            aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="menu-button" id="menu-button" type="button" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 </header>
